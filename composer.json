@@ -1,0 +1,17 @@
+{
+    "name": "dickbrouwers/game-of-life",
+    "require-dev": {
+        "phpunit/phpunit": "^7.2"
+    },
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Dojo\\GameOfLife\\": "/src"
+        }
+    },
+    "autoload_dev": {
+        "psr-4": {
+            "unit\\Dojo\\GameOfLife\\": "/tests"
+        }
+    }
+}
