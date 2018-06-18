@@ -17,6 +17,7 @@ final class Position
 
     public static function nextColumn(Position $position): Position
     {
+        return new self($position->col + 1, $position->row);
     }
 
     public function __toString(): string
