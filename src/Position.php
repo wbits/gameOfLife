@@ -15,6 +15,10 @@ final class Position
             $col = 0;
         }
 
+        if ($row < 0) {
+            $row = 0;
+        }
+
         $this->col = $col;
         $this->row = $row;
     }
