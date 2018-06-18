@@ -6,12 +6,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Dojo\\GameOfLife\\": "/src"
-        }
-    },
-    "autoload_dev": {
-        "psr-4": {
-            "unit\\Dojo\\GameOfLife\\": "/tests"
+            "Dojo\\GameOfLife\\": ["src/", "tests/"]
         }
     }
 }
