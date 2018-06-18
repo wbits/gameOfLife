@@ -29,4 +29,13 @@ final class GridTest extends TestCase
 
         self::assertEquals((string) $startingPosition, $this->grid->key());
     }
+
+    public function testItCanDoAnIteration()
+    {
+        $secondPosition = new Position(1, 0);
+
+        $this->grid->next();
+
+        self::assertEquals((string) $secondPosition, $this->grid->key());
+    }
 }
