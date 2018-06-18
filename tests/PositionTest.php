@@ -42,4 +42,11 @@ final class PositionTest extends TestCase
 
         self:: assertEquals(new Position(0, 0), $positionWithNegativeCol);
     }
+
+    public function testNegativeRowWillBeEvaluatedToZero()
+    {
+        $positionWithNegativeRow = new Position(0, -10);
+
+        self:: assertEquals(new Position(0, 0), $positionWithNegativeRow);
+    }
 }
