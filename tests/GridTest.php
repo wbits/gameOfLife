@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 final class GridTest extends TestCase
 {
+    const GRID_WIDTH = 3;
+
     /**
      * @var Grid
      */
@@ -15,7 +17,7 @@ final class GridTest extends TestCase
 
     protected function setUp()
     {
-        $this->grid = new Grid();
+        $this->grid = new Grid(self::GRID_WIDTH);
     }
 
     public function testItImplementsIterator()
@@ -37,5 +39,16 @@ final class GridTest extends TestCase
         $this->grid->next();
 
         self::assertEquals((string) $secondPosition, $this->grid->key());
+    }
+
+    public function testItCreatesNextRowWhenGridWithIsReached()
+    {
+        $secondRow = new Position(0, 1);
+
+        $this->grid->next(); // column 1 row 0
+        $this->grid->next(); // column 2 row 0
+        $this->grid->next(); // column 0 row 1
+
+        self::assertEquals((string) $secondRow, $this->grid->key());
     }
 }
