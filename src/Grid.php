@@ -6,6 +6,13 @@ namespace Dojo\GameOfLife;
 
 final class Grid implements \Iterator
 {
+    private $position;
+
+    public function __construct()
+    {
+        $this->rewind();
+    }
+
     public function current()
     {
         // TODO: Implement current() method.
@@ -16,9 +23,9 @@ final class Grid implements \Iterator
         // TODO: Implement next() method.
     }
 
-    public function key()
+    public function key(): string
     {
-        // TODO: Implement key() method.
+        return (string) $this->position;
     }
 
     public function valid()
@@ -26,8 +33,8 @@ final class Grid implements \Iterator
         // TODO: Implement valid() method.
     }
 
-    public function rewind()
+    public function rewind(): void
     {
-        // TODO: Implement rewind() method.
+        $this->position = new Position(0, 0);
     }
 }

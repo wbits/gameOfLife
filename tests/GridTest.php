@@ -27,6 +27,6 @@ final class GridTest extends TestCase
     {
         $startingPosition = new Position(0, 0);
 
-        self::assertEquals((string) $startingPosition, $this->grid->current());
+        self::assertEquals((string) $startingPosition, $this->grid->key());
     }
 }
