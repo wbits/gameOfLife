@@ -20,9 +20,9 @@ final class Position
         return new self($position->col + 1, $position->row);
     }
 
-    public static function nextRow($position)
+    public static function nextRow(Position $position): Position
     {
-
+        return new self(0, $position->row + 1);
     }
 
     public function __toString(): string

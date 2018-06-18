@@ -33,6 +33,6 @@ final class PositionTest extends TestCase
 
         $nextRow = Position::nextRow($position);
 
-        self::assertEquals('2:7', (string) $nextRow);
+        self::assertEquals('0:7', (string) $nextRow);
     }
 }
