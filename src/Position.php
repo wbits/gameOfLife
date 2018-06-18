@@ -11,6 +11,10 @@ final class Position
 
     public function __construct(int $col, int $row)
     {
+        if ($col < 0) {
+            $col = 0;
+        }
+
         $this->col = $col;
         $this->row = $row;
     }
