@@ -64,6 +64,5 @@ final class GridTest extends TestCase
         }
 
         self::assertEquals($expectedNumberOfCells, $c);
-
     }
 }

@@ -38,6 +38,11 @@ final class Position
         return $this->col;
     }
 
+    public function row(): int
+    {
+        return $this->row;
+    }
+
     public function __toString(): string
     {
         return sprintf('%d:%d', $this->col, $this->row);

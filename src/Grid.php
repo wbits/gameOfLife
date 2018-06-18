@@ -11,25 +11,33 @@ final class Grid implements \Iterator
      */
     private $position;
 
+    private $cells = [];
+
     private $width;
 
-    public function __construct(int $width)
+    private $height;
+
+    public function __construct(int $width, int $height)
     {
         $this->width = $width;
+        $this->height = $height;
 
         $this->rewind();
     }
 
-    public function current()
+    public function current(): Cell
     {
-        // TODO: Implement current() method.
+        $position = (string)$this->position;
+        if (!isset($this->cells[$position])) {
+            $this->cells[$position] = new Cell;
+        }
+
+        return $this->cells[$position];
     }
 
     public function next(): void
     {
-        $isRowCompleted = ($this->position->col() + 1) === $this->width;
-
-        $this->position = $isRowCompleted ? Position::nextRow($this->position) : Position::nextColumn($this->position);
+        $this->position = $this->rowDone() ? Position::nextRow($this->position) : Position::nextColumn($this->position);
     }
 
     public function key(): string
@@ -39,11 +47,16 @@ final class Grid implements \Iterator
 
     public function valid()
     {
-        // TODO: Implement valid() method.
+        return $this->position->col() < $this->width && $this->position->row() < $this->height;
     }
 
     public function rewind(): void
     {
         $this->position = new Position(0, 0);
+    }
+
+    private function rowDone(): bool
+    {
+        return ($this->position->col() + 1) === $this->width;
     }
 }
