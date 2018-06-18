@@ -20,7 +20,7 @@ final class Grid implements \Iterator
 
     public function next()
     {
-        // TODO: Implement next() method.
+        $this->position = Position::nextColumn($this->position);
     }
 
     public function key(): string
