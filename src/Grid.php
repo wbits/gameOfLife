@@ -6,10 +6,17 @@ namespace Dojo\GameOfLife;
 
 final class Grid implements \Iterator
 {
+    /**
+     * @var Position
+     */
     private $position;
 
-    public function __construct()
+    private $width;
+
+    public function __construct(int $width)
     {
+        $this->width = $width;
+
         $this->rewind();
     }
 
@@ -20,7 +27,11 @@ final class Grid implements \Iterator
 
     public function next()
     {
-        $this->position = Position::nextColumn($this->position);
+        if (($this->position->col() + 1) === $this->width) {
+            $this->position = Position::nextRow($this->position);
+        } else {
+            $this->position = Position::nextColumn($this->position);
+        }
     }
 
     public function key(): string

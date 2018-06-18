@@ -33,6 +33,11 @@ final class Position
         return new self(0, $position->row + 1);
     }
 
+    public function col(): int
+    {
+        return $this->col;
+    }
+
     public function __toString(): string
     {
         return sprintf('%d:%d', $this->col, $this->row);
