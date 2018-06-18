@@ -20,6 +20,11 @@ final class Position
         return new self($position->col + 1, $position->row);
     }
 
+    public static function nextRow($position)
+    {
+
+    }
+
     public function __toString(): string
     {
         return sprintf('%d:%d', $this->col, $this->row);
