@@ -25,13 +25,11 @@ final class Grid implements \Iterator
         // TODO: Implement current() method.
     }
 
-    public function next()
+    public function next(): void
     {
-        if (($this->position->col() + 1) === $this->width) {
-            $this->position = Position::nextRow($this->position);
-        } else {
-            $this->position = Position::nextColumn($this->position);
-        }
+        $isRowCompleted = ($this->position->col() + 1) === $this->width;
+
+        $this->position = $isRowCompleted ? Position::nextRow($this->position) : Position::nextColumn($this->position);
     }
 
     public function key(): string
