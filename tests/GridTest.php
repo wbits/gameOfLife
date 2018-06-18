@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 final class GridTest extends TestCase
 {
     const GRID_WIDTH = 3;
+    const GRID_HEIGHT = 2;
 
     /**
      * @var Grid
@@ -17,7 +18,7 @@ final class GridTest extends TestCase
 
     protected function setUp()
     {
-        $this->grid = new Grid(self::GRID_WIDTH);
+        $this->grid = new Grid(self::GRID_WIDTH, self::GRID_HEIGHT);
     }
 
     public function testItImplementsIterator()
@@ -29,7 +30,7 @@ final class GridTest extends TestCase
     {
         $startingPosition = new Position(0, 0);
 
-        self::assertEquals((string) $startingPosition, $this->grid->key());
+        self::assertEquals((string)$startingPosition, $this->grid->key());
     }
 
     public function testItCanDoAnIteration()
@@ -38,7 +39,7 @@ final class GridTest extends TestCase
 
         $this->grid->next();
 
-        self::assertEquals((string) $secondPosition, $this->grid->key());
+        self::assertEquals((string)$secondPosition, $this->grid->key());
     }
 
     public function testItCreatesNextRowWhenGridWithIsReached()
@@ -49,6 +50,20 @@ final class GridTest extends TestCase
         $this->grid->next(); // column 2 row 0
         $this->grid->next(); // column 0 row 1
 
-        self::assertEquals((string) $secondRow, $this->grid->key());
+        self::assertEquals((string)$secondRow, $this->grid->key());
+    }
+
+    public function testItCreatesACellForEachPosition()
+    {
+        $c = 0;
+        $expectedNumberOfCells = self::GRID_WIDTH * self::GRID_HEIGHT; // 3 * 2
+
+        foreach ($this->grid as $cell) {
+            $c++;
+            self::assertInstanceOf(Cell::class, $cell);
+        }
+
+        self::assertEquals($expectedNumberOfCells, $c);
+
     }
 }
