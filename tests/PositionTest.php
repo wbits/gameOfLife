@@ -17,4 +17,13 @@ final class PositionTest extends TestCase
 
         self::assertEquals('4:3', (string) $position);
     }
+
+    public function testItCanCreateNextColumn()
+    {
+        $position = new Position(3, 4);
+
+        $nextColumn = Position::nextColumn($position);
+
+        self::assertEquals('4:4', (string) $nextColumn);
+    }
 }

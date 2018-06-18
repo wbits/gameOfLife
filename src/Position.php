@@ -15,6 +15,10 @@ final class Position
         $this->row = $row;
     }
 
+    public static function nextColumn(Position $position): Position
+    {
+    }
+
     public function __toString(): string
     {
         return sprintf('%d:%d', $this->col, $this->row);
