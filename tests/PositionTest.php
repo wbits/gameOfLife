@@ -15,6 +15,6 @@ final class PositionTest extends TestCase
 
         $position = new Position($col, $row);
 
-        self::assertEquals('3,4', (string) $position);
+        self::assertEquals('4:3', (string) $position);
     }
 }
