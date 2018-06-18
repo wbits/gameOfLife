@@ -8,10 +8,25 @@ use PHPUnit\Framework\TestCase;
 
 final class GridTest extends TestCase
 {
+    /**
+     * @var Grid
+     */
+    private $grid;
+
+    protected function setUp()
+    {
+        $this->grid = new Grid();
+    }
+
     public function testItImplementsIterator()
     {
-        $grid = new Grid();
+        self::assertInstanceOf(\Iterator::class, $this->grid);
+    }
 
-        self::assertInstanceOf(\Iterator::class, $grid);
+    public function testItHasAStartingPosition()
+    {
+        $startingPosition = new Position(0, 0);
+
+        self::assertEquals((string) $startingPosition, $this->grid->current());
     }
 }
