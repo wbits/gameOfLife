@@ -10,7 +10,7 @@ final class PositionTest extends TestCase
 {
     public function testItHasColAndRow()
     {
-        $col = 4;
+        $col = new Column(4);
         $row = 3;
 
         $position = new Position($col, $row);
@@ -20,7 +20,7 @@ final class PositionTest extends TestCase
 
     public function testItCanCreateNextColumn()
     {
-        $position = new Position(3, 4);
+        $position = new Position(new Column(3), 4);
 
         $nextColumn = Position::nextColumn($position);
 
@@ -29,7 +29,7 @@ final class PositionTest extends TestCase
 
     public function testItCanCreateNextRow()
     {
-        $position = new Position(2, 6);
+        $position = new Position(new Column(2), 6);
 
         $nextRow = Position::nextRow($position);
 
@@ -40,7 +40,7 @@ final class PositionTest extends TestCase
     {
         $c = 0;
         $expectedNumberOfNeighbours = 8;
-        $position = new Position(3, 4);
+        $position = new Position(new Column(3), 4);
 
         foreach (Position::neighbours($position) as $neighbour) {
             $c++;

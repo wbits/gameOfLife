@@ -9,7 +9,7 @@ final class Position
     private $col;
     private $row;
 
-    public function __construct(int $col, int $row)
+    public function __construct(Column $col, int $row)
     {
         $this->col = $col;
         $this->row = $row;
@@ -17,27 +17,34 @@ final class Position
 
     public static function nextColumn(Position $position): Position
     {
-        return new self($position->col + 1, $position->row);
+        return new self(Column::east($position->col), $position->row);
     }
 
     public static function nextRow(Position $position): Position
     {
-        return new self(0, $position->row + 1);
+        return new self(new Column(0), $position->row + 1);
     }
 
     public static function neighbours(Position $position): \Generator
     {
-        yield new self($position->col - 1, $position->row - 1);  // NW
-        yield new self($position->col, $position->row - 1);          // N
-        yield new self($position->col + 1, $position->row - 1);  // NE
-        yield new self($position->col - 1, $position->row);          // E
-        yield self::nextColumn($position);                               // W
-        yield new self($position->col - 1, $position->row + 1);  // NW
-        yield new self($position->col, $position->row + 1);          // N
-        yield new self($position->col + 1, $position->row + 1);  // NE
+        $west = Column::west($position->col);
+        $east = Column::east($position->col);
+        $north = $position->row - 1;
+        $south = $position->row + 1;
+
+        yield new self($west, $north);
+        yield new self($position->col, $north);
+        yield new self($east, $north);
+
+        yield new self($east, $position->row);
+        yield self::nextColumn($position);
+
+        yield new self($west, $south);
+        yield new self($position->col, $south);
+        yield new self($east, $south);
     }
 
-    public function col(): int
+    public function col(): Column
     {
         return $this->col;
     }
@@ -49,6 +56,6 @@ final class Position
 
     public function __toString(): string
     {
-        return sprintf('%d:%d', $this->col, $this->row);
+        return sprintf('%d:%d', $this->col->number(), $this->row);
     }
 }

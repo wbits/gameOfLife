@@ -47,16 +47,16 @@ final class Grid implements \Iterator
 
     public function valid()
     {
-        return $this->position->col() < $this->width && $this->position->row() < $this->height;
+        return $this->position->col()->number() < $this->width && $this->position->row() < $this->height;
     }
 
     public function rewind(): void
     {
-        $this->position = new Position(0, 0);
+        $this->position = new Position(new Column(0), 0);
     }
 
     private function rowDone(): bool
     {
-        return ($this->position->col() + 1) === $this->width;
+        return ($this->position->col()->number() + 1) === $this->width;
     }
 }

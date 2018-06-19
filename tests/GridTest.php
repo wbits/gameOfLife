@@ -28,14 +28,14 @@ final class GridTest extends TestCase
 
     public function testItHasAStartingPosition()
     {
-        $startingPosition = new Position(0, 0);
+        $startingPosition = new Position(new Column(0), 0);
 
         self::assertEquals((string)$startingPosition, $this->grid->key());
     }
 
     public function testItCanDoAnIteration()
     {
-        $secondPosition = new Position(1, 0);
+        $secondPosition = new Position(new Column(1), 0);
 
         $this->grid->next();
 
@@ -44,7 +44,7 @@ final class GridTest extends TestCase
 
     public function testItCreatesNextRowWhenGridWithIsReached()
     {
-        $secondRow = new Position(0, 1);
+        $secondRow = new Position(new Column(0), 1);
 
         $this->grid->next(); // column 1 row 0
         $this->grid->next(); // column 2 row 0
