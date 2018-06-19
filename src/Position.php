@@ -25,9 +25,16 @@ final class Position
         return new self(0, $position->row + 1);
     }
 
-    public static function neighbours($position): \Generator
+    public static function neighbours(Position $position): \Generator
     {
-        yield '';
+        yield new self($position->col - 1, $position->row - 1);  // NW
+        yield new self($position->col, $position->row - 1);          // N
+        yield new self($position->col + 1, $position->row - 1);  // NE
+        yield new self($position->col - 1, $position->row);          // E
+        yield self::nextColumn($position);                               // W
+        yield new self($position->col - 1, $position->row + 1);  // NW
+        yield new self($position->col, $position->row + 1);          // N
+        yield new self($position->col + 1, $position->row + 1);  // NE
     }
 
     public function col(): int
