@@ -35,19 +35,11 @@ final class Position
         return new self(new Column(0), Row::South($position->row));
     }
 
-    public static function neighbours(Position $position): \Generator
+    public function neighbours(): \Generator
     {
-        yield new self($position->col, Row::north($position->row));
-        yield new self($position->col, Row::South($position->row));
+        $neighbours = new Neighbours($this);
 
-        yield new self(Column::east($position->col), $position->row);
-        yield new self(Column::west($position->col), $position->row);
-
-        yield new self(Column::west($position->col), Row::north($position->row));
-        yield new self(Column::east($position->col), Row::north($position->row));
-
-        yield new self(Column::west($position->col), Row::south($position->row));
-        yield new self(Column::east($position->col), Row::south($position->row));
+        return $neighbours();
     }
 
     public function col(): Column
