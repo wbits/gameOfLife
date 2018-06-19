@@ -35,4 +35,18 @@ final class PositionTest extends TestCase
 
         self::assertEquals('0:7', (string) $nextRow);
     }
+
+    public function testItAPositionCanYieldItsEightNeighbours()
+    {
+        $c = 0;
+        $expectedNumberOfNeighbours = 8;
+        $position = new Position(3, 4);
+
+        foreach (Position::neighbours($position) as $neighbour) {
+            $c++;
+            self::assertInstanceOf(Position::class, $neighbour);
+        }
+
+        self::assertEquals($expectedNumberOfNeighbours, $c);
+    }
 }
