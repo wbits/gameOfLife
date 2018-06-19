@@ -45,7 +45,7 @@ final class Grid implements \Iterator
         return (string) $this->position;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return $this->position->col()->number() < $this->width && $this->position->row()->number() < $this->height;
     }
