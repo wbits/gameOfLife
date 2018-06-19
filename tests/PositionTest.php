@@ -10,17 +10,17 @@ final class PositionTest extends TestCase
 {
     public function testItHasColAndRow()
     {
-        $col = new Column(4);
+        $col = 4;
         $row = 3;
 
-        $position = new Position($col, $row);
+        $position = Position::fromIntegers($col, $row);
 
         self::assertEquals('4:3', (string) $position);
     }
 
     public function testItCanCreateNextColumn()
     {
-        $position = new Position(new Column(3), 4);
+        $position = Position::fromIntegers(3, 4);
 
         $nextColumn = Position::nextColumn($position);
 
@@ -29,7 +29,7 @@ final class PositionTest extends TestCase
 
     public function testItCanCreateNextRow()
     {
-        $position = new Position(new Column(2), 6);
+        $position = Position::fromIntegers(2, 6);
 
         $nextRow = Position::nextRow($position);
 
@@ -40,7 +40,7 @@ final class PositionTest extends TestCase
     {
         $c = 0;
         $expectedNumberOfNeighbours = 8;
-        $position = new Position(new Column(3), 4);
+        $position = Position::fromIntegers(3, 4);
 
         foreach (Position::neighbours($position) as $neighbour) {
             $c++;

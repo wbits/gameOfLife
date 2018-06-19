@@ -9,10 +9,20 @@ final class Position
     private $col;
     private $row;
 
-    public function __construct(Column $col, int $row)
+    public function __construct(Column $col, Row $row)
     {
         $this->col = $col;
         $this->row = $row;
+    }
+
+    public static function initial(): Position
+    {
+        return new self(new Column(0), new Row(0));
+    }
+
+    public static function fromIntegers(int $col, int $row): Position
+    {
+        return new self(new Column($col), new Row($row));
     }
 
     public static function nextColumn(Position $position): Position
@@ -22,26 +32,22 @@ final class Position
 
     public static function nextRow(Position $position): Position
     {
-        return new self(new Column(0), $position->row + 1);
+        return new self(new Column(0), Row::South($position->row));
     }
 
     public static function neighbours(Position $position): \Generator
     {
-        $west = Column::west($position->col);
-        $east = Column::east($position->col);
-        $north = $position->row - 1;
-        $south = $position->row + 1;
+        yield new self($position->col, Row::north($position->row));
+        yield new self($position->col, Row::South($position->row));
 
-        yield new self($west, $north);
-        yield new self($position->col, $north);
-        yield new self($east, $north);
+        yield new self(Column::east($position->col), $position->row);
+        yield new self(Column::west($position->col), $position->row);
 
-        yield new self($east, $position->row);
-        yield self::nextColumn($position);
+        yield new self(Column::west($position->col), Row::north($position->row));
+        yield new self(Column::east($position->col), Row::north($position->row));
 
-        yield new self($west, $south);
-        yield new self($position->col, $south);
-        yield new self($east, $south);
+        yield new self(Column::west($position->col), Row::south($position->row));
+        yield new self(Column::east($position->col), Row::south($position->row));
     }
 
     public function col(): Column
@@ -49,13 +55,13 @@ final class Position
         return $this->col;
     }
 
-    public function row(): int
+    public function row(): Row
     {
         return $this->row;
     }
 
     public function __toString(): string
     {
-        return sprintf('%d:%d', $this->col->number(), $this->row);
+        return sprintf('%d:%d', $this->col->number(), $this->row->number());
     }
 }
