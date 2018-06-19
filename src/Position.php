@@ -35,9 +35,9 @@ final class Position
         return new self(new Column(0), Row::South($position->row));
     }
 
-    public function neighbours(): \Generator
+    public function neighbourPositions(): \Generator
     {
-        $neighbours = new Neighbours($this);
+        $neighbours = new NeighbourPositions($this);
 
         return $neighbours();
     }

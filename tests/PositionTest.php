@@ -42,7 +42,7 @@ final class PositionTest extends TestCase
         $expectedNumberOfNeighbours = 8;
         $position = Position::fromIntegers(3, 4);
 
-        foreach ($position->neighbours() as $neighbour) {
+        foreach ($position->neighbourPositions() as $neighbour) {
             $c++;
             self::assertInstanceOf(Position::class, $neighbour);
         }
