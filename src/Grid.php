@@ -29,7 +29,7 @@ final class Grid implements \Iterator
     {
         $position = (string)$this->position;
         if (!isset($this->cells[$position])) {
-            $this->cells[$position] = new Cell;
+            $this->cells[$position] = new Cell();
         }
 
         return $this->cells[$position];

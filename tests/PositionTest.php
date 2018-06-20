@@ -49,4 +49,11 @@ final class PositionTest extends TestCase
 
         self::assertEquals($expectedNumberOfNeighbours, $c);
     }
+
+    public function testItCanBeCreatedFromString()
+    {
+        $position = Position::fromIntegers(1, 2);
+
+        self::assertEquals($position, Position::fromString((string) $position));
+    }
 }

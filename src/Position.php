@@ -25,6 +25,11 @@ final class Position
         return new self(new Column($col), new Row($row));
     }
 
+    public static function fromString(string $position): Position
+    {
+
+    }
+
     public static function nextColumn(Position $position): Position
     {
         return new self(Column::east($position->col), $position->row);
