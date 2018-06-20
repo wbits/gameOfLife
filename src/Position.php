@@ -27,7 +27,7 @@ final class Position
 
     public static function fromString(string $position): Position
     {
-
+        return self::fromIntegers(...array_map('intval', explode(':', $position)));
     }
 
     public static function nextColumn(Position $position): Position
