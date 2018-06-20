@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Dojo\GameOfLife;
 
-final class GameOfLife
+final class Game
 {
     private $grid;
 
@@ -13,7 +13,7 @@ final class GameOfLife
         $this->grid = $grid;
     }
 
-    public static function firstGeneration(int $width, int $height): GameOfLife
+    public static function firstGeneration(int $width, int $height): Game
     {
         return new self(new Grid($width, $height));
     }

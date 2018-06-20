@@ -12,8 +12,8 @@ final class GameOfLifeTest extends TestCase
     {
         $gridDimensions = [4, 5];
 
-        $game = GameOfLife::firstGeneration(...$gridDimensions);
+        $game = Game::firstGeneration(...$gridDimensions);
 
-        self::assertInstanceOf(GameOfLife::class, $game);
+        self::assertInstanceOf(Game::class, $game);
     }
 }
