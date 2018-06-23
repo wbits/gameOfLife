@@ -6,8 +6,15 @@ namespace Dojo\GameOfLife;
 
 final class Cell
 {
+    private $alive;
 
-    public function isAlive()
+    public function __construct(bool $alive)
     {
+        $this->alive = $alive;
+    }
+
+    public function isAlive(): bool
+    {
+        return $this->alive;
     }
 }
