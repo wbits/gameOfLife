@@ -7,6 +7,7 @@ namespace Dojo\GameOfLife;
 final class Cell
 {
     private $alive;
+    private $livingNeighbours = 0;
 
     public function __construct(bool $alive)
     {
@@ -20,9 +21,15 @@ final class Cell
 
     public function interact(Cell $cell): void
     {
+        if (!$cell->alive) {
+            return;
+        }
+
+        ++$this->livingNeighbours;
     }
 
     public function livingNeighbours(): int
     {
+        return $this->livingNeighbours;
     }
 }
