@@ -17,4 +17,12 @@ final class Cell
     {
         return $this->alive;
     }
+
+    public function interact(Cell $cell): void
+    {
+    }
+
+    public function livingNeighbours(): int
+    {
+    }
 }
