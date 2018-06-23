@@ -7,4 +7,7 @@ namespace Dojo\GameOfLife;
 final class Cell
 {
 
+    public function isAlive()
+    {
+    }
 }
