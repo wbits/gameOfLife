@@ -18,10 +18,10 @@ final class CellTest extends TestCase
     public function testItCanInteract()
     {
         $cell = new Cell(true);
-        $currentCell = new Cell(false);
+        $neighbour = new Cell(true);
 
-        $currentCell->interact($cell);
+        $cell->registerStatus($neighbour);
 
-        self::assertEquals(1, $currentCell->livingNeighbours());
+        self::assertEquals(1, $cell->livingNeighbours());
     }
 }

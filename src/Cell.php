@@ -19,7 +19,7 @@ final class Cell
         return $this->alive;
     }
 
-    public function interact(Cell $cell): void
+    public function registerStatus(Cell $cell): void
     {
         if (!$cell->alive) {
             return;
