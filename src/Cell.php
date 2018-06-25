@@ -20,7 +20,7 @@ final class Cell
             return new self(!$cell->alive);
         }
 
-        if ($cell->livingNeighbours < 2 || $cell->livingNeighbours > 3) {
+        if ($cell->livingNeighbours !== 2) {
             return new self(false);
         }
 
@@ -32,13 +32,9 @@ final class Cell
         return $this->alive;
     }
 
-    public function registerStatus(Cell $cell): void
+    public function registerStatus(Cell $neighbour): void
     {
-        if (!$cell->alive) {
-            return;
-        }
-
-        ++$this->livingNeighbours;
+        $this->livingNeighbours += (int) $neighbour->alive;
     }
 
     public function livingNeighbours(): int
